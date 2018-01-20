@@ -10,6 +10,7 @@ public class Article {
 	private int id;
 	private String name;
 	private int stars;
+	private Person person;
 
 	public Article() {
 		// TODO Auto-generated constructor stub
@@ -60,4 +61,19 @@ public class Article {
 		this.stars = stars;
 	}
 
+	/**
+	 * @return the person
+	 */
+	public Person getPerson() {
+		return person;
+	}
+
+	/**
+	 * @param person the person to set
+	 */
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+	
+	
 }
