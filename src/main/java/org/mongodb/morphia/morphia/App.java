@@ -6,6 +6,7 @@ import org.mongodb.morphia.Morphia;
 import com.mongodb.MongoClient;
 
 import domaine.Address;
+import domaine.Article;
 import domaine.Person;
 
 /**
@@ -21,17 +22,27 @@ public class App {
 		morphia.map(Person.class).map(Address.class);
 		Datastore ds = morphia.createDatastore(mongo, "my_database");
 
-		Person p = new Person();
-		p.setName("Tintin");
+		Person person = new Person();
+		person.setName("Tintin");
+		
 		Address address = new Address();
 		address.setStreet("123 Some street");
 		address.setCity("Some city");
 		address.setPostCode("123 456");
 		address.setCountry("Some country");
+		
+		Article article = new Article();
+		article.setName("Iphone");
+		article.setStars(3);
+		article.setPerson(person);
+		
+		ds.save(article);
 		// set address
-		p.setAddress(address);
+		person.setAddress(address);
 		// Save the POJO
-		ds.save(p);
+		ds.save(person);
+		
+		
 		for (Person e : ds.find(Person.class))
 			System.err.println(e);
 	}
